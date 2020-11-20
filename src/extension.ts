@@ -13,11 +13,11 @@ export function activate(context: vscode.ExtensionContext) {
 		
 	var text = vscode.window.activeTextEditor?.document.getText();
 
-	const decoded_cert = execSync(`echo \"${text}\" | openssl x509 -text -noout`, { encoding: 'utf-8'});
+	const decodedCert = execSync(`echo \"${text}\" | openssl x509 -text -noout`, { encoding: 'utf-8'});
 
 	let output = vscode.window.createOutputChannel("Pem decode");
 	output.show();
-	output.appendLine(`${decoded_cert}`);
+	output.appendLine(`${decodedCert}`);
 
 });
 
