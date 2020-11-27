@@ -14,6 +14,6 @@ jobs:
         run: xvfb-run -a npm clean-install-test
         if: runner.os == 'Linux'
       - name: Lint
-        run: npm lint
+        run: npm run lint
       - name: Package
         run: vsce package
