@@ -6,4 +6,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - run: npm clean-install-test
+      - run: xvfb-run -a npm clean-install-test
+        if: runner.os == 'Linux'
