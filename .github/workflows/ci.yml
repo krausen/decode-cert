@@ -1,10 +1,19 @@
 name: decode-cert-ci-cd
 on: [push]
 jobs:
-  unit-test:
+  build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: xvfb-run -a npm clean-install-test
+      - name: Cheout repository
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+      - name: Install test dependencies
+        run: sudo apt-get install xvfb
+      - name: Test
+        run: xvfb-run -a npm clean-install-test
         if: runner.os == 'Linux'
+      - name: Lint
+        run: npm lint
+      - name: Package
+        run: vsce package
